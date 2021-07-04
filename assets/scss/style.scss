@@ -1,0 +1,486 @@
+@import './variable';
+
+
+/*common css*/
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    background: color(primary-color);
+    color: color(secondary-color);
+    font-size: 16px;
+    font-weight: 400;
+    font-family: $primary-font;
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    transition: 0.3s;
+
+    &:hover {
+        transition: 0.3s;
+        text-decoration: none;
+        outline: none;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container-fluid,
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.wrapper {
+    position: relative;
+    display: block;
+    height: 100vh;
+    overflow: hidden;
+}
+
+// header css
+header {
+    display: block;
+    clear: both;
+    background: color(primary-color);
+
+    .header_wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+
+        .brand {
+            display: flex;
+            align-items: flex-end;
+            max-width: 350px;
+
+            .logo_icn {
+                max-width: 60px;
+            }
+
+            .logo_txt {
+                max-width: 200px;
+                margin-left: 15px;
+            }
+        }
+        
+        .menu {
+            display: flex;
+            flex-flow: row-reverse;
+            align-items: center;
+
+            .menu-items {
+                display: none;
+                margin-right: 25px;
+                ul {
+                    display: flex;
+                    list-style: none;
+
+                    li {
+                        position: relative; 
+
+                        a {
+                            display: block;
+                            font-size: 16px;
+                            padding: 0 15px;
+                            color: color(menu-color);
+                            font-weight: 700;
+                            font-family: $primary-font;
+                            text-align: center;
+
+                            &:hover {
+                                color: color(secondary-color);
+                            }
+                        }
+
+                        ul {
+                            display: none;
+                            position: absolute;
+                            top: 100%;
+                            left: 0;
+                            width: 100%;
+                            flex-flow: column;
+                            justify-content: center;
+                            padding-top: 20px;
+                            li {
+                                a {
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    padding-bottom: 10px;
+                                }
+                            }
+                        }
+
+                        &:hover {
+                            ul {
+                                display: flex;
+                                //animation: height-change 0.5s linear;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // Hamburgure icon
+        #nav-icon {
+            width: 50px;
+            height: 30px;
+            position: relative;
+            transform: rotate(0deg);
+            transition: .5s ease-in-out;
+            cursor: pointer;
+
+            span {
+                display: block;
+                position: absolute;
+                height: 4px;
+                width: 100%;
+                background: color(secondary-color);
+                opacity: 1;
+                left: 0;
+                transform: rotate(0deg);
+                transition: .25s ease-in-out;
+
+                &:nth-child(1) {
+                    top: 0px;
+                }
+
+                &:nth-child(2) {
+                    top: 15px;
+                }
+
+                &:nth-child(3) {
+                    top: 30px;
+                }
+            }
+
+            &.open {
+                span {
+                    &:nth-child(1) {
+                        top: 18px;
+                        transform: rotate(135deg);
+                    }
+
+                    &:nth-child(2) {
+                        opacity: 0;
+                        left: -60px;
+                    }
+
+                    &:nth-child(3) {
+                        top: 18px;
+                        transform: rotate(-135deg);
+                    }
+                }
+                ~{
+                    .menu-items{
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Home Banner
+
+.home_main_banner {
+    .banner_ctn {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 94px);
+
+        h2 {
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 15px;
+
+            span {
+                font-style: italic;
+                font-weight: 700;
+            }
+        }
+
+        h4 {
+            font-size: 28px;
+            font-family: $secondary-font;
+            font-weight: 700;
+            letter-spacing: 12px;
+        }
+    }
+}
+
+.animation_elements {
+    position: absolute;
+    z-index: -1;
+    overflow: hidden;
+
+    &.shape1,
+    &.shape2 {
+        width: 200px;
+        height: 80px;
+        background: #606467 url(../images/ring_squre.png) no-repeat;
+        background-size: unset;
+        border-top-left-radius: 100px;
+        border-bottom-right-radius: 100px;
+
+        transform: scale(1.3);
+        background-position: -6% -10%;
+    }
+
+    &.shape1 {
+        bottom: 10px;
+        right: 0;
+        animation: rtl-move 17s infinite linear alternate;
+    }
+
+    &.shape2 {
+        top: 96px;
+        left: -20%;
+        animation: ltr-move 20s infinite 5s linear alternate;
+    }
+
+    &.shape3 {
+        bottom: -100px;
+        left: -50px;
+        animation: rotate-shape 9s infinite linear;
+        z-index: -2;
+    }
+
+    &.shape4 {
+        top: 50%;
+        right: 80px;
+        animation: rotate-shape 7s reverse linear infinite;
+    }
+
+    &.shape5 {
+        top: 50%;
+
+        &.left_shape5 {
+            animation: rtl-shp 9s linear infinite alternate;
+            transform: rotate(45deg);
+        }
+
+        &.right_shape5 {
+            animation: ltr-shp 9s linear infinite alternate;
+        }
+    }
+}
+
+.bubble {
+    position: absolute;
+    bottom: -150px;
+    width: 40px;
+    height: 40px;
+    background: color(secondary-color);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: rise 15s infinite ease-in;
+    z-index: -1;
+
+    &:nth-child(1) {
+        width: 40px;
+        height: 40px;
+        left: 10%;
+        animation-duration: 14s;
+    }
+
+    &:nth-child(2) {
+        width: 30px;
+        height: 30px;
+        right: 30%;
+        animation-duration: 9s;
+        animation-delay: 1s;
+        background: color(bubble-color);
+        opacity: 1;
+    }
+
+    &:nth-child(3) {
+        width: 80px;
+        height: 80px;
+        right: 15%;
+        animation-duration: 12s;
+        animation-delay: 6s;
+        background: transparent;
+        border: 2px solid color(bubble-color);
+        opacity: 1;
+    }
+
+    &:nth-child(4) {
+        width: 80px;
+        height: 80px;
+        left: -25px;
+        animation-duration: 12s;
+        background: transparent;
+        border: 2px solid color(bubble-color);
+    }
+
+    &:nth-child(5) {
+        width: 35px;
+        height: 35px;
+        right: -15px;
+        animation-duration: 10s;
+        animation-delay: 2s;
+    }
+
+    &:nth-child(6) {
+        width: 150px;
+        height: 150px;
+        left: -5%;
+        animation-duration: 15s;
+        animation-delay: 2s;
+        opacity: 0.6;
+    }
+
+    &:nth-child(7) {
+        width: 120px;
+        height: 120px;
+        right: -2%;
+        animation-duration: 20s;
+        opacity: 0.8;
+        background: color(bubble-color);
+    }
+
+    &:nth-child(8) {
+        width: 30px;
+        height: 30px;
+        right: 10%;
+        animation-duration: 9s;
+        animation-delay: 5s;
+        background: color(bubble-color);
+        opacity: 0.6;
+    }
+
+    &:nth-child(9) {
+        width: 50px;
+        height: 50px;
+        right: 15%;
+        animation-duration: 13s;
+        animation-delay: 4s;
+        background: color(secondary-color);
+        opacity: 0.7;
+    }
+}
+
+@keyframes rise {
+    0% {
+        bottom: -100px;
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translate(100px);
+    }
+
+    100% {
+        bottom: 1080px;
+        transform: translateX(-200px);
+    }
+}
+
+@keyframes rtl-shp {
+    from {
+        right: 0;
+    }
+
+    to {
+        right: 100px;
+    }
+}
+
+@keyframes ltr-shp {
+    from {
+        left: 0;
+    }
+
+    to {
+        left: 80px;
+    }
+}
+
+
+@keyframes rtl-move {
+    0% {
+        right: -20%;
+        transform: rotate(0);
+    }
+
+    100% {
+        right: 105%;
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes ltr-move {
+    0% {
+        left: -20%;
+        transform: rotate(180deg);
+    }
+
+    100% {
+        left: 105%;
+        transform: rotate(0);
+    }
+}
+
+@keyframes btt-move {
+    0% {
+        bottom: -50%;
+        transform: rotate(0);
+    }
+
+    100% {
+        bottom: 100%;
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate-shape {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes height-change {
+    from{
+        top: 0;
+        height: 0;
+    }
+    to{
+        top: 100%;
+        height: auto;
+    }
+}
